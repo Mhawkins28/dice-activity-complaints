@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roll the Dice</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <header class="top">
+      <p class="kicker">Roll the dice</p>
+      <h1>How upset are you?</h1>
+    </header>
+
+    <section class="problem" aria-live="polite">
+      <p class="label">The problem</p>
+      <p id="problem" class="problem-text">Press "New problem"</p>
+    </section>
+
+    <section class="stage">
+      <button id="die" class="die" type="button" aria-label="Roll the dice">
+        <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+        <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+        <span class="pip"></span><span class="pip"></span><span class="pip"></span>
+      </button>
+
+      <div id="result" class="result" aria-live="polite">
+        <p id="level" class="level">Ready?</p>
+        <p id="add" class="add">Roll the dice to find out.</p>
+      </div>
+    </section>
+
+    <nav class="controls">
+      <button id="rollBtn" class="btn primary" type="button">Roll</button>
+      <button id="problemBtn" class="btn" type="button">New problem</button>
+    </nav>
+
+    <ul class="legend">
+      <li class="calm"><strong>1 or 2</strong> Calm</li>
+      <li class="firm"><strong>3 or 4</strong> Firm</li>
+      <li class="angry"><strong>5 or 6</strong> Angry</li>
+    </ul>
+
+    <p class="hint">Space = roll &nbsp;·&nbsp; P = new problem</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

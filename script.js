@@ -1,15 +1,11 @@
 // ---- Edit these lists for other lessons ----
 
-// Problems shown by "New problem"
+// Class problems: shown in this order by "Next problem" (then it starts again)
 const PROBLEMS = [
   "Your coffee is cold.",
-  "Your order is wrong.",
-  "Your new shoes are two different sizes.",
-  "Your roommate's music is loud after midnight.",
+  "There's a hair in your food.",
   "Your delivery is an hour late.",
   "Your phone is still broken after the repair.",
-  "There's a hair in your noodles.",
-  "Your teammate didn't do their part of the project.",
 ];
 
 // What each level adds
@@ -36,9 +32,10 @@ const pips = die.querySelectorAll(".pip");
 const levelEl = document.getElementById("level");
 const addEl = document.getElementById("add");
 const problemEl = document.getElementById("problem");
+const countEl = document.getElementById("count");
 
 let rolling = false;
-let lastProblem = -1;
+let current = -1;
 
 function showFace(n) {
   pips.forEach((pip, i) => pip.classList.toggle("on", FACES[n].includes(i)));
@@ -84,12 +81,9 @@ function roll() {
 }
 
 function newProblem() {
-  let i;
-  do {
-    i = Math.floor(Math.random() * PROBLEMS.length);
-  } while (i === lastProblem && PROBLEMS.length > 1);
-  lastProblem = i;
-  problemEl.textContent = PROBLEMS[i];
+  current = (current + 1) % PROBLEMS.length;
+  problemEl.textContent = PROBLEMS[current];
+  countEl.textContent = "Problem " + (current + 1) + " of " + PROBLEMS.length;
 }
 
 die.addEventListener("click", roll);
@@ -99,7 +93,7 @@ document.getElementById("problemBtn").addEventListener("click", newProblem);
 document.addEventListener("keydown", (e) => {
   // Space always rolls, even if a button has focus (Enter still presses the focused button)
   if (e.key === " ") { e.preventDefault(); roll(); }
-  if (e.key === "p" || e.key === "P") newProblem();
+  if (e.key === "n" || e.key === "N" || e.key === "ArrowRight") newProblem();
 });
 
 showFace(6);
